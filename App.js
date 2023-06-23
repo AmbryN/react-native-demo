@@ -20,13 +20,13 @@ export default function App() {
         const Styles = AppStyles();
         const Colors = CustomTheme();
 
-        const [connected, setConnected] = useState(true);
-        const onLogin = () => {
-            setConnected(true);
+        const [connected, setConnected] = useState(null);
+        const onLogin = (data) => {
+            setConnected(data);
         }
 
         const onLogout = () => {
-            setConnected(false);
+            setConnected(null);
         }
 
         const LoginNavigation = () => {

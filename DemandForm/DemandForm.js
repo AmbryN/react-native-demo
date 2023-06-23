@@ -1,5 +1,5 @@
 import AppStyles from "../AppStyles";
-import {View, Text, TextInput, TouchableOpacity, Image, Button} from "react-native";
+import {Button, Image, Text, TouchableOpacity, View} from "react-native";
 import React, {useState} from "react";
 import DemandFormStyles from "./DemandFormStyles";
 import * as ImagePicker from "expo-image-picker";
