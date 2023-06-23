@@ -28,12 +28,12 @@ export default function App() {
             if (validateLogin(data)) {
                 setLoginError('')
                 setConnected(true);
+            } else {
+                setLoginError("Identifiants incorrects.")
             }
-            setLoginError("Identifiants incorrects.")
         }
 
         const onLogout = () => {
-            setLoginError('')
             setConnected(null);
         }
 
