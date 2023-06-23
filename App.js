@@ -1,7 +1,7 @@
 import {NavigationContainer} from "@react-navigation/native";
 import AppStyles from "./AppStyles";
 import CustomTheme from "./customTheme";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {StatusBar} from "react-native";
 import 'react-native-gesture-handler';
 import Connexion from "./Connexion/Connexion";
@@ -13,6 +13,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import demandForm from "./DemandForm/DemandForm";
 import {Header, Icon, SearchBar} from "react-native-elements";
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import {validateLogin} from "./services/LoginService";
 
 
 export default function App() {
@@ -20,18 +21,25 @@ export default function App() {
         const Styles = AppStyles();
         const Colors = CustomTheme();
 
-        const [connected, setConnected] = useState(null);
+        const [connected, setConnected] = useState(false);
+        const [loginError, setLoginError] = useState('');
+
         const onLogin = (data) => {
-            setConnected(data);
+            if (validateLogin(data)) {
+                setLoginError('')
+                setConnected(true);
+            }
+            setLoginError("Identifiants incorrects.")
         }
 
         const onLogout = () => {
+            setLoginError('')
             setConnected(null);
         }
 
         const LoginNavigation = () => {
             return (
-                <Connexion onLogin={onLogin}/>
+                <Connexion onLogin={onLogin} loginError={loginError}/>
             )
         }
 

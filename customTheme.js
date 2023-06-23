@@ -5,6 +5,7 @@ const commonColors = {
     "white": "#fff",
     "black": "#000",
     "accent": "#ff6b6b",
+    "error": "#cb2222",
 }
 
 const Colors = {

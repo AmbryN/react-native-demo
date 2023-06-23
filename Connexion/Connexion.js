@@ -1,11 +1,13 @@
 import AppStyles from "../AppStyles";
 import ConnexionStyle from "./ConnexionStyles";
-import {Button, View} from "react-native";
+import {Button, View, Text} from "react-native";
 import InputText from "../InputText/InputText";
 import {useForm} from "react-hook-form";
+import CustomTheme from "../customTheme";
 
-export default ({onLogin}) => {
+export default ({onLogin, loginError}) => {
     const Styles = {...AppStyles(), ...ConnexionStyle()}
+    const Colors = CustomTheme();
 
     const  { control,
         handleSubmit,
@@ -13,6 +15,10 @@ export default ({onLogin}) => {
 
     const onValidForm = (data) => {
         onLogin(data);
+    }
+
+    const ErrorText = () => {
+        return loginError !== '' && <Text style={{color: Colors.error}}>{loginError}</Text>
     }
 
     return (
@@ -33,6 +39,7 @@ export default ({onLogin}) => {
                        rules={{required: true, minLength: 8}}
                        errorMessage="Ce champ est requis et nécessite au moins 8 caractères."
             />
+            <ErrorText/>
             <Button title={"Connexion"} onPress={handleSubmit(onValidForm)}/>
         </View>
     )
